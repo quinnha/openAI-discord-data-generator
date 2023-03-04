@@ -46,9 +46,14 @@ def clean_text(text):
     return text
 
 
-# clear output file
-with open('output.jsonl', 'w') as outfile:
-    pass
+# create file if it doesnt exist
+try:
+    f = open("output.jsonl", "x")
+except:
+    # clear output file if it does exist
+    with open('output.jsonl', 'w') as outfile:
+        pass
+
 
 file_list = os.listdir(DIR_PATH)
 
@@ -94,5 +99,5 @@ for file in file_list:
 
 print("Operation complete, find the log in output.jsonl")
 print("Replies Parsed:", reply_counter)
-print("Words Parsed", word_counter)
-print("Approximate Tokens", word_counter * 1000/750)
+print("Words Parsed:", word_counter)
+print("Approximate Tokens:", round(word_counter * 1000/750))
